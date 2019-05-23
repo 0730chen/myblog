@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>页面</title>
+</head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        overflow-y: auto;
+    }
+    
+    .pagination {
+        position: relative;
+        top: 50%;
+        left: 30%;
+        transform: translateY(500px)
+    }
+    
+    hr {
+        width: 100%;
+        position: relative;
+        transform: translateX(-30px);
+        border: 1px solid #989292;
+    }
+    
+    #navHr {
+        width: 100%;
+        left: 8%;
+        position: relative;
+        border: 1px solid #989292;
+    }
+    
+    #content {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        bottom: -97px;
+    }
+    
+    #message {
+        height: 20%;
+        width: 70%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -162px;
+        margin-top: 125px;
+        border: 1px solid black;
+    }
+    
+    #discuss {
+        position: absolute;
+        bottom: 20px;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="span8">
+                <ul class="nav nav-pills">
+                    <li class="active" id="page-home"><a href="#">首页</a></li>
+                    <li class='content' id="page-context"><a href="#">学习</a></li>
+                    <li class='interest' id="page-int"><a href="#">感兴趣的事</a></li>
+                    <li class=" daily" id="page-day"><a href="#">日常
+                    </a></li>
+                    <li class=" daily" id="page-day"><a href="#">总结
+                        </a></li>
+                </ul>
+                <hr id="navHr">
+            </div>
+        </div>
+        <div id="content" class="row-fluid">
+            <div class=" col-md-3">
+                <p>我是内容</p>
+                <hr>
+            </div>
+            <div class=" col-md-9">
+                <p>我是内容</p>
+                <hr>
+            </div>
+            <div class=" col-md-9">
+                <p>我是内容</p>
+                <hr>
+            </div>
+            <div class=" col-md-9">
+                <p>我是内容</p>
+                <hr>
+            </div>
+            <div class=" col-md-9">
+                <p>我是内容</p>
+                <hr>
+            </div>
+            <div class=" col-md-9">
+                <p>我是内容</p>
+                <hr>
+            </div>
+        </div>
+        <ul class="pagination">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+        <div id="message">
+            <form action="" method="post">
+                <input class="btn btn-default" type="submit" value="发表评论" id="discuss">
+            </form>
+        </div>
+    </div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+</script>
+<script>
+    $(document).ready(function() {
+        $('.nav-pills').on('click', 'li', function(event) {
+            // console.log(this)
+            // console.log(event)
+            $(this).toggleClass('active').siblings().removeClass('active')
+        })
+    })
+</script>
+
+</html>
