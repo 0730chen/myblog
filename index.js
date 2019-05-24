@@ -6,10 +6,12 @@ const $ = require('jquery')
 const url = require('url')
 const signin = require('./routers/signin')
 const page = require('./routers/posts')
+const comments = require('./routers/comments')
 const session = require('express-session')
 const getTest = require('./mongodb')
 const app = express()
-    //配置静态文件路径
+app.disable('view cache');
+//配置静态文件路径
 app.use(express.static(path.join(__dirname, './public')));
 app.engine('html', ejs.__express)
 app.set('view engine', 'html')
@@ -35,6 +37,7 @@ app.get('/', function(req, res) {
 })
 app.use('/signin', signin)
 app.use('/page', page)
+app.use('/comments', comments)
     // app.use('/page', page)
     // routes(app)
 app.listen('3000', function() {
