@@ -1,4 +1,4 @@
- exports.GetTest = function(data, state) {
+ exports.GetTest = function(data, state, callback) {
      //  console.log('外部的数据' + todoList)
      const MongoClient = require('mongodb').MongoClient
      const url = "mongodb://localhost:27017"
@@ -19,19 +19,22 @@
          //  console.log('下面是要插入的数据')
          //  console.log(data)
          if (state === 1) {
+             //增加数据
              col.insertOne(data, function(err, callback) {
-                 if (err) {
-                     console.log(err)
-                 } else {
-                     console.log("成功")
-                 }
+                     if (err) {
+                         console.log(err)
+                     } else {
+                         console.log("成功")
+                     }
 
-             })
-             col.find().toArray((err, res) => {
-                 console.log(res)
+                 })
+                 //  col.find().toArray((err, res) => {
+                 //      console.log('这个是增加数据的' + res)
 
-             })
-         } else {
+             //  })
+         }
+         if (state === 2) {
+             //删除数据
              col.remove(data, function(err, callback) {
                  if (err) {
                      console.log(err)
@@ -40,10 +43,30 @@
                  }
 
              })
-             col.find().toArray((err, res) => {
-                 console.log(res)
-
-             })
          }
+         if (state === 3) {
+             //  查询数据
+             col.find().toArray((err, res) => {
+                     data = JSON.stringify(res)
+                         //  console.log('查询数据' + data)
+                     callback(data)
+
+                 })
+                 //  col.find().pretty()
+         }
+         //  } else {
+         //      col.remove(data, function(err, callback) {
+         //          if (err) {
+         //              console.log(err)
+         //          } else {
+         //              console.log("成功")
+         //          }
+
+         //      })
+         //      col.find().toArray((err, res) => {
+         //          console.log(res)
+
+         //      })
+         //  }
      })
  }

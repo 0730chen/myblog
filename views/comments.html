@@ -40,6 +40,13 @@
             console.log('调回去')
             window.location.href = 'page'
         })
+        $.ajax({
+            method: 'get',
+            url: '/comments',
+            success: function(response) {
+                console.log(response)
+            }
+        })
     })
 </script>
 
