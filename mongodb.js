@@ -54,6 +54,14 @@
                  })
                  //  col.find().pretty()
          }
+         if (state === 4) {
+             console.log(data)
+             col.find(data).toArray((err, res) => {
+                 Data = JSON.stringify(res)
+                 console.log(Data)
+             })
+
+         }
          //  } else {
          //      col.remove(data, function(err, callback) {
          //          if (err) {

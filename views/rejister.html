@@ -57,43 +57,46 @@
         border-radius: 4px;
     }
     
-    #add {
+    #logining {
         position: relative;
         width: 50px;
         height: 25px;
-        background-color: maroon;
+        background-color: lightcoral;
         top: 50%;
         left: 20%;
-        transform: translateY(280px);
+        transform: translateY(260px);
         border-radius: 4px;
     }
 </style>
 
 <body>
     <div class="container">
-        <div>
+        <div class="form">
             <input type="text" placeholder="姓名" name="username" id="name">
             <input type="password" placeholder="密码" name="password" id="password">
-            <input type="submit" value="注册" id="add">
+            <button class="btn btn-default" id="logining">登陆</button>
         </div>
     </div>
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#add').click(function() {
-                var user = $("#name").val()
-                var pws = $("#password").val()
+            $('#logining').click(function() {
+                var name = $("#name").val()
+                var psw = $("#password").val()
+                console.log('name：', name, 'pws:', psw)
                 $.ajax({
-                    method: 'POST',
-                    url: '/signin',
+                    method: 'post',
+                    url: '/logining',
                     data: {
                         name: name,
-                        pws: pws
+                        psw: psw,
                     },
                     dataType: 'json',
-                    success: function(reponse) {
-                        console.log(Response)
+                    success: function(response) {
+                        console.log('请求成功')
+                        console.log(response.url)
+                            // window.location.href = response['url']
                     }
 
                 })
