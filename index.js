@@ -39,6 +39,7 @@ app.get('/', function(req, res) {
 })
 app.use('/signin', signin)
 app.use('/page', page)
+
 app.use('/comments', comments)
 app.use('/rejister', rejister)
 app.use('/logining', logining)

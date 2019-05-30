@@ -84,19 +84,48 @@
             $('#add').click(function() {
                 var user = $("#name").val()
                 var pws = $("#password").val()
-                $.ajax({
-                    method: 'POST',
-                    url: '/signin',
-                    data: {
-                        name: name,
-                        pws: pws
-                    },
-                    dataType: 'json',
-                    success: function(reponse) {
-                        console.log(Response)
-                    }
+                console.log(user, pws)
+                if (user == '' || pws == '') {
+                    alert('用户名和密码不能为空')
+                } else {
+                    $.ajax({
+                        method: 'POST',
+                        url: '/signin',
+                        data: {
+                            name: user,
+                            pws: pws
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            alert('注册成功')
+                                // window.location.href = response.url
+                            setTimeout(function() {
+                                window.location.href = response.url
+                            }, 3000)
+                            console.log(response.url)
+                        }
 
-                })
+                    })
+                }
+
+                // $.ajax({
+                //     method: 'POST',
+                //     url: '/signin',
+                //     data: {
+                //         name: user,
+                //         pws: pws
+                //     },
+                //     dataType: 'json',
+                //     success: function(response) {
+                //         alert('注册成功')
+                //             // window.location.href = response.url
+                //         setTimeout(function() {
+                //             window.location.href = response.url
+                //         }, 3000)
+                //         console.log(response.url)
+                //     }
+
+                // })
             })
         })
     </script>

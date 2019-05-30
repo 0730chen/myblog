@@ -85,18 +85,18 @@
     }
 </style>
 
-<body>
+<body id="body1">
 
     <div class="container">
         <div class="row">
             <div class="span8">
                 <ul class="nav nav-pills">
-                    <li class="active" id="page-home"><a href="#">首页</a></li>
-                    <li class='content' id="page-context"><a href="#">学习</a></li>
-                    <li class='interest' id="page-int"><a href="#">感兴趣的事</a></li>
-                    <li class=" daily" id="page-day"><a href="#">日常
+                    <li class="active" id="page-home"><a href="/page/header">首页</a></li>
+                    <li class='content' id="page-context"><a href="/page/learn">学习</a></li>
+                    <li class='interest' id="page-int"><a href="/page/interst">感兴趣的事</a></li>
+                    <li class=" daily" id="page-day"><a href="/page/daily">日常
                     </a></li>
-                    <li class=" daily" id="page-day"><a href="#">总结
+                    <li class=" daily" id="page-day"><a href="/page/all">留言
                         </a></li>
                 </ul>
                 <hr id="navHr">
@@ -104,11 +104,11 @@
         </div>
         <div id="content" class="row-fluid">
             <div class=" col-md-3">
-                <p>我是内容</p>
+                <p>学习日记</p>
                 <hr>
             </div>
             <div class=" col-md-9">
-                <p>我是内容</p>
+                <p>每日内容</p>
                 <hr>
             </div>
             <div class=" col-md-9">
@@ -130,11 +130,13 @@
         </div>
         <ul class="pagination">
             <li><a href="#">&laquo;</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
+            <li>
+                <a href="#">1</a>
+            </li>
+            <li><a href="#2">2</a></li>
+            <li><a href="#3">3</a></li>
+            <li><a href="#4">4</a></li>
+            <li><a href="#5">5</a></li>
             <li><a href="#">&raquo;</a></li>
         </ul>
         <div id="message">
@@ -155,6 +157,11 @@
 </script>
 <script>
     $(document).ready(function() {
+        window.onhashchange = function(e) {
+            console.log('old', e.oldURL)
+            console.log('new', e.newURL)
+            console.log('hash改变了')
+        }
         $('.nav-pills').on('click', 'li', function(event) {
             // console.log(this)
             // console.log(event)
@@ -192,6 +199,33 @@
         })
 
     })
+
+    // function Router() {
+    //     this.routes = {}
+    //     this.curUrl = ''
+    //     this.route = function(path, callback) {
+    //         this.routes[path] = callback || function() {}
+    //         console.log('routes[path]' + this.routes[path])
+    //     }
+    //     this.refresh = function() {
+    //         this.curUrl = location.hash.slice(1) || '/'
+    //         this.routes[this.curUrl]
+    //         console.log('location.hash' + location.hash)
+    //         console.log('curUrl' + this.curUrl)
+    //         console.log('this.routes[this.curUrl]' + this.routes[this.curUrl])
+    //     }
+    //     this.init = function() {
+    //         window.addEventListener('load', this.refresh.bind(this), false)
+    //         window.addEventListener('hashchange', this.refresh.bind(this), false)
+    //     }
+
+    // }
+    // var R = new Router();
+    // R.init();
+    // var res = document.getElementById('body1')
+    // R.route('/header', function() {
+    //     res.innerHTML = '我的页面'
+    // })
 </script>
 
 </html>
