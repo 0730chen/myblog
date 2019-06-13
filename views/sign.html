@@ -74,7 +74,7 @@
         <div>
             <input type="text" placeholder="姓名" name="username" id="name">
             <input type="password" placeholder="密码" name="password" id="password">
-            <input type="submit" value="注册" id="add">
+            <input type="submit" value="登陆" id="add">
         </div>
     </div>
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
@@ -97,7 +97,7 @@
                         },
                         dataType: 'json',
                         success: function(response) {
-                            alert('注册成功')
+                            alert('登陆成功')
                                 // window.location.href = response.url
                             setTimeout(function() {
                                 window.location.href = response.url

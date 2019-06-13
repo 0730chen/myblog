@@ -60,10 +60,11 @@
     #logining {
         position: relative;
         width: 50px;
-        height: 25px;
+        height: 32px;
         background-color: lightcoral;
         top: 50%;
         left: 20%;
+        text-align: center;
         transform: translateY(260px);
         border-radius: 4px;
     }
@@ -74,7 +75,7 @@
         <div class="form">
             <input type="text" placeholder="姓名" name="username" id="name">
             <input type="password" placeholder="密码" name="password" id="password">
-            <button class="btn btn-default" id="logining">登陆</button>
+            <button class="btn btn-default" id="logining">注册</button>
         </div>
     </div>
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
@@ -85,21 +86,29 @@
                 var name = $("#name").val()
                 var psw = $("#password").val()
                 console.log('name：', name, 'pws:', psw)
-                $.ajax({
-                    method: 'post',
-                    url: '/logining',
-                    data: {
-                        name: name,
-                        psw: psw,
-                    },
-                    dataType: 'json',
-                    success: function(response) {
-                        console.log('请求成功')
-                        console.log(response.url)
-                            // window.location.href = response['url']
-                    }
+                if (name == '' || psw == '') {
+                    alert('用户名和密码不能为空')
+                } else
 
-                })
+                {
+                    $.ajax({
+                        method: 'post',
+                        url: '/logining',
+                        data: {
+                            name: name,
+                            psw: psw,
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log('请求成功')
+                            console.log(response.url)
+                            window.location.href = response.url
+                                // alert('账号注册成功')
+
+                        }
+
+                    })
+                }
             })
         })
     </script>

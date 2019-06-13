@@ -12,21 +12,23 @@ router.get('/header', function(req, res, next) {
     res.sendFile(page)
 })
 router.get('/learn', function(req, res, next) {
-    res.send('我是学习')
+    const page = path.join(__dirname, '../views', 'learn.html')
+    res.sendFile(page)
 
 })
 router.get('/interst', function(req, res, next) {
-
-    res.send('我是兴趣')
+    const page = path.join(__dirname, '../views', 'interste.html')
+    res.sendFile(page)
 })
 router.get('/daily', function(req, res, next) {
-    const daily = path.join(__dirname, '../views', 'daily.html')
+    // const login = path.join(__dirname, '../views', 'login.html')
 
-    res.sendFile(daily)
+    // res.sendFile(login)
+    res.redirect('..');
 })
 router.get('/all', function(req, res, next) {
-        const comments = path.join(__dirname, '../views', 'comments.html')
-        res.sendFile(commetns)
+        const page = path.join(__dirname, '../views', 'comments.html')
+        res.sendFile(page)
     })
     //发表一篇文章
     // router.post('/create', checkLogin, function(req, res, next) {
