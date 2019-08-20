@@ -68,14 +68,20 @@ export default {
         getData(){
             axios.post('/api/addArticle',{
                 title:this.title,
-                wraper:this.wraper
+                wraper:this.wraper,
             }).then(res =>{
                 alert('添加'+res.data)
+                this.$router.push({path:'/register'})
                 // console.log(res.data)
             })
         }
     },
     mounted() {
+        if(this.title ||this.wraper == ''){
+            alert('标题内容不能为空')
+        }else{
+            this.getData()
+        }
     },
 }
 </script>
