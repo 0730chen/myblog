@@ -1,6 +1,9 @@
 <template>
     <div class="context">
-        <!-- <canvas class="canvas"></canvas> -->
+       
+        <!-- <canvas class="canvas" id="canvas"></canvas> -->
+        <backgr></backgr>
+        <backgr2></backgr2>
         <div class="button" @click="change">
         </div>
         <el-container>
@@ -22,8 +25,12 @@
     </div>
 </template>
 <style scoped>
-canvas{
- position: absolute;
+.canvas{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    z-index: -1;
 }
 .item-path{
     position: absolute;
@@ -158,7 +165,6 @@ a{
 }
 .el-container{
     height: 100%;
-    border:1px solid black;
 }
 
 .el-aside{
@@ -181,10 +187,17 @@ a{
 import menu from '../components/menuList'
 import axios from 'axios'
 import Element from 'element-ui'
+import backgr from '../components/backgr'
+import backgr2 from '../components/backgr2'
 const book = require('../assets/book.png')
 const memory = require('../assets/pen.png')
 const penceil = require('../assets/penceil.png')
 const star = require('../assets/star.png')
+// console.log(backgr)
+// var canvas = document.getElementById('canvas')
+// console.log(canvas)
+
+
 // console.log(book)
 // console.log(memory)
 // console.log(penceil)
@@ -221,7 +234,9 @@ export default {
         }
     },
     components:{
-        'menuList':menu
+        'menuList':menu,
+        'backgr':backgr,
+        'backgr2':backgr2
     },
     methods:{
         manger(){
@@ -232,12 +247,13 @@ export default {
                 console.log(res.data)
                 this.article = res.data
             })
-        },
+        },    
         change(){
             // console.log('点击')
             this.flag =! this.flag
             console.log(this.flag)
         },
+
         // mystart(){
         //     var canvas = document.getElementById('canvas')
         //     ctx = canvas.getContext('2d'),
