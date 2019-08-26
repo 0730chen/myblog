@@ -7,6 +7,7 @@ import register from '../components/register.vue'
 import addArticle from '../components/addArticle.vue'
 import message from '../components/message.vue'
 import holiday from '../components/holiday.vue'
+import timeClick from '../components/timeClick.vue'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
             path: '/holiday',
             name: 'holiday',
             component: holiday
+        },
+        {
+            path: '/timeClick',
+            name: 'timeClick',
+            component: timeClick,
         }
     ]
 })

@@ -4,11 +4,15 @@
             <img src="../assets/logo.png" alt="">
         </div>
         <div v-for="(menu,index) of menuLs" :key="index" class="lists">
-            <div class="list">{{menu.name}}</div>
+            <div class="list"><router-link :to="menu.path">{{menu.name}}</router-link></div>
         </div>
     </div>
 </template>
 <style scoped>
+a{
+    color: aliceblue;
+    text-decoration: none;
+}
 .lists{
     position: flex;
     justify-content: center;
@@ -16,6 +20,7 @@
 }
 .list{
     height: 1rem;
+    color: aliceblue;
 }
 .avatar{
     position: relative;
@@ -40,11 +45,11 @@ export default {
             menuLs:[
                 {
                     name:'首页',
-                    path:'',
+                    path:'/',
                 },
                 {
                     name:'假期倒计时',
-                    path:'',
+                    path:'/timeClick',
 
                 },
                 {
