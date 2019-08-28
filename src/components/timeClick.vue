@@ -10,9 +10,24 @@
         </transition>
         
         <canvas id="canvas" height="200" width="200"></canvas>
+        <div class="day">
+            {{dayName}}
+            <span>{{dayMessage}}</span>
+        </div>
     </div>
 </template>
 <style scoped>
+span{
+    display: block;
+}
+.day{
+    position: absolute;
+    width: 100%;
+    height: 1rem;
+    left: 0;
+    top: 50%;
+    color: black
+}
 .show-enter-active{
     transition: all 0.5s ease;
 }
@@ -81,10 +96,11 @@ class TimeClick{
         // console.log(this.rem)
         this.ctx = ctx
         this.ctx.save();
+        ctx.translate(this.r,this.r)
         // console.log(this.r)
-        this.ctx.translate(this.r,this.r)//作用是将原点从左上方移动到圆心位置。不移动圆心的页面只能显示一个圆弧
+        // this.ctx.translate(this.r,this.r)//作用是将原点从左上方移动到圆心位置。不移动圆心的页面只能显示一个圆弧
         this.ctx.beginPath()
-        // this.ctx.lineWidth = 10*2;
+        this.ctx.lineWidth = 10*this.rem
         this.ctx.arc(0,0,this.r-this.ctx.lineWidth/2,0,2*Math.PI,false)//以0.0为原点r为半径顺时针画园,false是顺时针
         this.ctx.stroke()
 
@@ -122,11 +138,16 @@ class TimeClick{
         // this.hour = hour
         // this.minute = minute
         this.ctx.beginPath()
-        console.log(hour)
-        console.log(minute)
-        var rad = (hour*30-90+minute/2)*Math.PI/180//需要旋转的弧度值
+        // console.log(hour)
+        // console.log(minute)
+        if(hour<4){
+            var rad = (hour*30+270+minute/2)*Math.PI/180
+        }else{
+            var rad = (hour*30-90+minute/2)*Math.PI/180
+        }
+        // var rad = (hour*30-90+minute/2)*Math.PI/180//需要旋转的弧度值
         // var mrad = 2*Math.PI/60*minute
-        console.log(rad)
+        // console.log(rad)
         this.ctx.rotate(rad)
         // this.ctx.rotate(2*Math.PI/12*(hour-3)+2*Math.PI/12/60*minute);
         this.ctx.lineWidth = 6
@@ -140,15 +161,16 @@ class TimeClick{
     }
     drawMinute(minute){
         this.ctx.save()
-        console.log(minute)
+        // console.log(minute)
         this.ctx.beginPath()
         //加一个判断
-        if(minute<16){
-            var rad = (minute*6)*Math.PI/180
+        if(minute<15){
+            var rad = (minute*6+270)*Math.PI/180
         }else{
             var rad = (minute*6-90)*Math.PI/180
         }
-        console.log(rad)
+        // console.log(rad)
+        this.ctx.rotate(rad)
         // this.ctx.rotate(rad)
         // this.ctx.rotate(rad)
         this.ctx.lineWidth = 3*this.rem
@@ -161,8 +183,14 @@ class TimeClick{
     }
     drawSecond(seconds){
         this.ctx.save()
-        console.log(seconds)
-        var rad =  2 * Math.PI / 60 * seconds; 
+        // console.log(seconds)
+        this.ctx.beginPath()
+        if(seconds<15){
+            var rad = (seconds*6+270)*Math.PI/180
+        }else{
+            var rad = (seconds*6-90)*Math.PI/180
+        }
+        // var rad =  2 * Math.PI / 60 * seconds; 
         this.ctx.rotate(rad)
         // this.ctx.rotate(rad)
         this.ctx.lineWidth = 1*this.rem
@@ -177,10 +205,13 @@ class TimeClick{
 
 import listMeun from '../components/menuList'
 import { METHODS } from 'http';
+import { setInterval } from 'timers';
 export default {
     data(){
         return{
             flag:false,
+            dayName:'',
+            dayMessage:'',
         }
     },
     methods: {
@@ -189,33 +220,112 @@ export default {
             this.flag =! this.flag
             console.log(this.flag)
         },
+        getDays(){
+            let days = new Date()
+            // console.log(days.getDay())//获取日期数字
+            switch (days.getDay()) {
+                case 0:
+                    this.dayName = '星期天'
+                    this.dayMessage= '今天放假啦出去浪~~'
+                    break
+                case 1:
+                    this.dayName = '星期一'
+                    this.dayMessage= '今天要好好加油'
+                    break
+                case 2:
+                    this.dayName = '星期二'
+                    this.dayMessage= '今天要好好加油'
+                    break
+                case 3:
+                // console.log(3)
+                    this.dayName ='星期三'
+                    this.dayMessage= '今天要好好加油'
+                    break
+                case 4:
+                    this.dayName ='星期四'
+                    this.dayMessage= '今天要好好加油'
+                    break
+                case 5:
+                    this.dayName = '星期五'
+                    this.dayMessage= '今天要好好加油'
+                    break
+                case 6:
+                    this.dayName = '星期六'
+                    this.dayMessage= '今天放假啦出去浪~~'
+                    break;
+            }
+            // let dayTime = days.getDay()
+            // console.log(dayTime)
+        }
         //画时钟
-        drawTime(){
+        // drawTime(){
+        // var canvas = document.getElementById('canvas')
+        // var ctx = canvas.getContext('2d')
+        // var width = ctx.canvas.width
+        // var height = ctx.canvas.height
+        // var rem = width/300
+        // var r = width/2-8*rem
+        // ctx.clearRect(0,0,width,height)
+        // var now = new Date()
+        // var hour = now.getHours() %12
+        // var minute = now.getMinutes()
+        // var seconds = now.getSeconds()
+        // var time = new TimeClick(r,rem,hour,minute,seconds)
+        // ctx.clearRect(0, 0, canvas.width, canvas.height)
+        // // console.log(ctx)
+        // time.drawBackground(ctx)
+        // time.drawHour(hour,minute)
+        // time.drawMinute(minute,seconds)
+        // time.drawSecond(seconds)
+        // // time.drawMinute(minute)
+        // // window.requestAnimationFrame(this.drawTime)
+        // }
+    },
+    created() {
+        this.getDays()
+    },
+    components:{
+        'listMenu':listMeun
+    },
+    mounted(){
+//          window.requestAnimFrame = (function(){
+//   return  window.requestAnimationFrame       ||
+//           window.webkitRequestAnimationFrame ||
+//           window.mozRequestAnimationFrame    ||
+//           function( callback ){
+//             window.setTimeout(callback, 1000 / 60);
+//             };
+//             })();
         var canvas = document.getElementById('canvas')
         var ctx = canvas.getContext('2d')
         var width = ctx.canvas.width
         var height = ctx.canvas.height
         var rem = width/300
         var r = width/2-8*rem
-        var now = new Date()
-        var hour = now.getHours() %12
-        var minute = now.getMinutes()
-        var seconds = now.getSeconds()
-        var time = new TimeClick(r,rem,hour,minute,seconds)
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        // console.log(ctx)
-        time.drawBackground(ctx)
-        time.drawHour(hour,minute)
-        time.drawMinute(minute,seconds)
-        time.drawSecond(seconds)
+        // ctx.translate(this.r,this.r)
+        function drawClick(){
+            ctx.clearRect(0,0,width,height)
+            var now = new Date()
+            var hour = now.getHours() %12
+            var minute = now.getMinutes()
+            var seconds = now.getSeconds()
+            // console.log(day)
+            var time = new TimeClick(r,rem,hour,minute,seconds)
+            time.drawBackground(ctx)
+            time.drawHour(hour,minute)
+            time.drawMinute(minute,seconds)
+            time.drawSecond(seconds)
+            ctx.restore()
         // time.drawMinute(minute)
+        window.requestAnimationFrame(drawClick)
+
         }
-    },
-    components:{
-        'listMenu':listMeun
-    },
-    mounted(){
-        window.requestAnimationFrame(this.drawTime)
+        window.requestAnimationFrame(drawClick)
+        // drawClick()
+        // drawClick()
+        // window.requestAnimationFrame(drawClick)
+        // setInterval(this.drawTime,1000)
+        // window.requestAnimationFrame(this.drawTime)
         // var canvas = document.getElementById('canvas')
         // var ctx = canvas.getContext('2d')
         // var width = ctx.canvas.width

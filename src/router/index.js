@@ -8,6 +8,8 @@ import addArticle from '../components/addArticle.vue'
 import message from '../components/message.vue'
 import holiday from '../components/holiday.vue'
 import timeClick from '../components/timeClick.vue'
+import note from '../components/note.vue'
+import wrap from '../components/wrap.vue'
 
 Vue.use(Router)
 
@@ -52,6 +54,16 @@ export default new Router({
             path: '/timeClick',
             name: 'timeClick',
             component: timeClick,
+        },
+        {
+            path: '/note',
+            name: 'note',
+            component: note
+        },
+        {
+            path: '/wrap',
+            name: 'wrap',
+            component: wrap
         }
     ]
 })

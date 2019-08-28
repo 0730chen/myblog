@@ -3,7 +3,7 @@
        
         <!-- <canvas class="canvas" id="canvas"></canvas> -->
         <backgr></backgr>
-        <backgr2></backgr2>
+        <!-- <backgr2></backgr2> -->
         <div class="button" @click="change">
         </div>
         <el-container>
@@ -226,7 +226,7 @@ export default {
                 },
                 {
                     name:'倒计时',
-                    path:'/memory',
+                    path:'/timeClick',
                     img:star,
                 }
             ]
