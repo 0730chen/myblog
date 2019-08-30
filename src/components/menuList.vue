@@ -54,7 +54,7 @@ export default {
                 },
                 {
                     name:'笔记',
-                    path:'',
+                    path:'/note',
                 }
             ]
         }

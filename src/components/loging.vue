@@ -7,7 +7,7 @@
             <input type="text" placeholder="姓名" name="username" id="name" v-model="username">
             <input type="password" placeholder="密码" name="password" id="password" v-model="password">
             <input type="submit" value="注册" id="register" @click="sendCount" >
-            <input type="submit" value="登陆" id="add">
+            <input type="submit" value="登陆" id="add" @click="loging">
     </div>
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <!-- <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -148,12 +148,12 @@ export default {
   },
   methods:{
     sendCount(e){
-      console.log(this.username)
-      console.log(this.password)
-      axios.get('/api/').then(res =>{
-        console.log('请求成功')
-        // console.log(res.data)
-      })
+      // console.log(this.username)
+      // console.log(this.password)
+      // axios.get('/api/').then(res =>{
+      //   console.log('请求成功')
+      //   // console.log(res.data)
+      // })
       axios.post('/api/add',{
         'data':'register',
         user:{
@@ -163,9 +163,16 @@ export default {
         // 'userName':this.username,
         // 'passWord':this.password
       }).then(res =>{
-        alert('注册'+res.data)
+        console.log(res.data)
+        if(res.data=='账号已经注册过了'){
+          alert('账号已经被注册')
+        }else{
+          alert('注册成功')
+          this.$router.push({'path':'manage'})
+        }
+        // alert('注册'+res.data)
 
-        this.$router.push({'path':'manage'})
+        // this.$router.push({'path':'manage'})
         
       }).catch(
         error => {
@@ -177,6 +184,25 @@ export default {
       //   console.log('成功')
       // }
       // )
+    },
+    loging(e){
+      // console.log(this.username)
+      // console.log(this.password)
+      axios.post('/api/loging',
+        {
+          'username':this.username,
+        'passWord':this.password
+        },
+      ).then(res=>{
+        
+        if(res.data =='验证通过'){
+          alert('登陆成功')
+          this.$router.push({'path':'manage'})
+
+        }else{
+          alert('登陆失败--请检查账号密码')
+        }
+      })
     }
   }
 }
