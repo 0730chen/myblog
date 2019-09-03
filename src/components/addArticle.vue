@@ -66,7 +66,7 @@ export default {
         },
         //将页面上的文章和标题存在数据库中
         getData(){
-            axios.post('/api/addArticle',{
+            axios.post('/addArticle',{
                 title:this.title,
                 wraper:this.wraper,
             }).then(res =>{

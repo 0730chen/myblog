@@ -107,7 +107,7 @@ export default {
 
         },
         register(){
-            axios.get('/api/re').then(res=>{
+            axios.get('/re').then(res=>{
                 console.log(res.data)
                 this.User = res.data
                 // console.log(typeof(res.data.data))

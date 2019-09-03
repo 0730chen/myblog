@@ -46,7 +46,7 @@ export default {
         },
         //获取文章内容
         getAritcle(){
-            axios.get('/api/addArticle').then(res=>{
+            axios.get('/addArticle').then(res=>{
                 console.log(res.data)
                this.article= res.data
                 // Data.forEach(e => {

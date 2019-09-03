@@ -1,18 +1,24 @@
 <template>
     <div class="context">
-         <div class="button" @click="change">
-        <div>文章</div>
-        <div v-html="wrap">{{wrap}}</div>
+         <div class="button" @click="change"></div>
         <transition name="show">
         <div class="cover" v-show="flag"><menu-list></menu-list></div>
         </transition>
         <transition name="show">
         <div class="mycover" v-show="flag" @click="change"></div>
         </transition>
+        <div>文章</div>
+        <div v-html="wrap" class="wrap">{{wrap}}</div>
     </div>
-    </div>
+
 </template>
 <style scoped>
+.wrap{
+    position: absolute;
+    width: 100%;
+    height: 2rem;
+
+}
 .show-enter-active{
     transition: all 0.5s ease;
 }
@@ -27,9 +33,9 @@
      transform: translateX(4rem);
 }
 .mycover{
-    width: 100%;
-    height: 100%;
-    position:fixed;
+    width: 3.75rem;
+    height: 6.67rem;
+    position: fixed;
     background-color: rgba(0,0,0,.7);
     top: 0;
     left: 0;
@@ -52,6 +58,10 @@
     z-index: 100;
 }
     .context{
+        position: relative;
+        height: 100%;
+        width: 100%;
+        left: 0;
         font-size: 0.16rem
     }
 </style>
@@ -75,7 +85,7 @@ export default {
         getJsonId(){
             let json = this.$route.query._id//router传参 route接受参数
             console.log(json)
-            axios.get('/api/note',{
+            axios.get('/note',{
                 params:{
                    "_id":json
                }

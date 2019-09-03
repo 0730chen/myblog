@@ -243,7 +243,7 @@ export default {
             this.$router.push({'path':'/loging'})
         },
         getSon(){
-            axios.get('/api/addArticle').then(res => {
+            axios.get('/addArticle').then(res => {
                 console.log(res.data)
                 this.article = res.data
             })

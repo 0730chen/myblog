@@ -98,7 +98,7 @@ export default {
     },
     methods: {
         getTitle(){
-            axios.get('/api/addArticle').then(res=>{
+            axios.get('/addArticle').then(res=>{
                 console.log(res.data)
                 this.title = res.data
             })

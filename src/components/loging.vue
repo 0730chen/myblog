@@ -154,7 +154,7 @@ export default {
       //   console.log('请求成功')
       //   // console.log(res.data)
       // })
-      axios.post('/api/add',{
+      axios.post('/add',{
         'data':'register',
         user:{
           'userName':this.username,
@@ -188,7 +188,7 @@ export default {
     loging(e){
       // console.log(this.username)
       // console.log(this.password)
-      axios.post('/api/loging',
+      axios.post('/loging',
         {
           'username':this.username,
         'passWord':this.password
