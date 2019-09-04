@@ -1,9 +1,8 @@
 <template>
   <div class="page">
     <title>My Blog</title>
-    博客后台管理
     <div class="container">
-        
+            <div><strong>请登录</strong></div>
             <input type="text" placeholder="姓名" name="username" id="name" v-model="username">
             <input type="password" placeholder="密码" name="password" id="password" v-model="password">
             <input type="submit" value="注册" id="register" @click="sendCount" >
@@ -70,7 +69,7 @@
 .page{
     width: 100%;
     height: 100%;
-    background-color:cadetblue;
+    background-color:white;
     font-size: 0.16rem;
     }
 
@@ -83,9 +82,8 @@
         margin: 0 auto;
         height: 3.5rem;
         padding: 0;
-        border: 1px solid black;
-        background-color:skyblue;
-         transform: translateY(1rem)
+        transform: translateY(1rem);
+        box-shadow: 1px 5px 10px black;
     }
    
     
@@ -98,8 +96,8 @@
         background-color: whitesmoke;
         padding: 0;
         border: 0;
-        
         border-radius: 4px;
+        border: 1px solid black;
     }
     
     #password {
@@ -111,28 +109,28 @@
         background-color: whitesmoke;
         padding: 0;
         border: 0;
-       
         border-radius: 4px;
+        border: 1px solid black;
     }
     #register{
-       position: absolute;
-        width: 0.5rem;
-        height: 0.25rem;
-        background-color:#84a0f1;
-        bottom: 0rem;
-        left: 0.05rem;
-       
-        border-radius: 0.04rem;
-    }
-    
-    #add {
         position: absolute;
         width: 0.5rem;
         height: 0.25rem;
-        background-color: #84a0f1;
-        bottom: 0rem;
-        right: 0.05rem;
-       
+        border: 0;
+        bottom: 1rem;
+        right: 0.5rem;
+        border-radius: 0.04rem;
+        background-color:white;
+    }
+    
+    #add {
+        color: aliceblue;
+        position: absolute;
+        width: 2.5rem;
+        height: 0.3rem;
+        background-color: #6188f5;
+        bottom: 0.5rem;
+        right: 0.5rem;
         border-radius: 0.04rem;
     }
 </style>

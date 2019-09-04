@@ -83,7 +83,7 @@ export default {
                 },
                 {
                     name:'回到首页',
-                    path:'/manage'
+                    path:'/'
                 }
             ]
         }
