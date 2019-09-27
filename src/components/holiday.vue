@@ -1,8 +1,8 @@
 <template>
     <div class="context">
-        <div class="menuCover" v-if="flag" @click="change"></div>
+        <!-- <div class="menuCover" v-if="flag" @click="change"></div>
         <blogTitle @titleV="getF" :flag="flag"></blogTitle>
-        <mymenu v-if="flag"></mymenU>
+        <mymenu v-if="flag"></mymenU> -->
         <div class="Message">{{dayMessage}}</div> 
         <div class="Name">{{dayName}}</div>
     </div>
@@ -25,7 +25,7 @@
     align-items: center;
     }
     .context{
-        font-size: 0.16rem;
+        font-size: 18px;
     }
 </style>
 <script>

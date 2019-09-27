@@ -1,21 +1,9 @@
 <template>
-    <div class="context">
-        <canvas id="canvas2"></canvas>
+    <div>
+        <canvas id="canvas2" width="1500" height="600"></canvas>
     </div>
 </template>
 <style scoped>
-    .context{
-        position: absolute;
-        top:50%;
-        height:30%;
-        width: 100%;
-    }
-    #canvas2{
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        left:0;
-    }
 </style>
 <script>
 var time = 2;
@@ -30,6 +18,7 @@ class dot{
         //随机粒子大小
         this.size = Math.ceil(Math.random()*3+2)
         this.ctx2={}
+
     }
     render(ctx2){
         ctx2.save()
@@ -44,11 +33,11 @@ class dot{
     //对粒子做逻辑运算
     update(){
         // this.ctx2.clearRect(0,0,canvas.width,canvas.height);
+
         this.x = this.x+this.vx*time
         this.y = this.y+this.vy*time
-        // console.log(this.x,this.y)
-        this.vx = (this.x < canvas.width && this.x > 0) ? this.vx:(-this.vx)
-        this.vy = (this.y < canvas.height && this.y >0) ? this.vy:(-this.vy)
+        this.vx = (this.x < this.ctx2.canvas.width && this.x > 0) ? this.vx:(-this.vx)
+        this.vy = (this.y < this.ctx2.canvas.height && this.y >0) ? this.vy:(-this.vy)
         this.render(this.ctx2)
     }
 
@@ -79,7 +68,7 @@ export default {
                 var y=Math.ceil(Math.random()*canvas.height);
                 var vx=Math.ceil(Math.random()*2);
                 var vy=Math.ceil(Math.random()*2);
-                var d=new dot(x,y,vx,vy);
+                var d=new dot(x,y,vx,vy,canvas);
                 // console.log(d)
                 // console.log(ctx2)
                 // console.log(d)
@@ -93,8 +82,7 @@ export default {
                 ctx2.clearRect(0,0,canvas.width,canvas.height);
                 for(let i= 0; i<dots.length;i++){
                     // console.log(dots[i])
-                    // console.log(dots[i])
-                    dots[i].update()
+                    dots[i].update(canvas)
                 }
                 window.requestAnimationFrame(anim)
             }

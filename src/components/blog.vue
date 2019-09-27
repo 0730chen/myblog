@@ -1,292 +1,415 @@
 <template>
-    <div class="context">
-       
-        <!-- <canvas class="canvas" id="canvas"></canvas> -->
-        <backgr></backgr>
-        <!-- <backgr2></backgr2> -->
-        <div class="button" @click="change">
+  <div class="context clearfix">
+    <img src="../assets/bg.jpg" alt />
+    <nav>
+      <div class="nav">
+        <span>
+          <strong>前端笔记</strong>
+        </span>
+        <div class="linkList">
+          <a href="#">
+            <li class="link-item">Home</li>
+          </a>
+          <li class="link-item">博客</li>
+          <li class="link-item">感想</li>
         </div>
-        <el-container>
-            <el-header>
-                <el-button type="primary" icon="el-icon-edit" @click="manger">管理</el-button>
-            </el-header>
-            <transition name="show">
-            <div  class="cover" v-show="flag"><menuList></menuList></div>
-            </transition>
-        </el-container>
-        <transition name="show">
-        <div class="mycover" v-show="flag" @click="change"></div></transition>
-        <div class="footer">
-            <div v-for="(item,index) of footer" :key="index" class="item">
-                <img :src="item.img" alt="">
-               <div class="item-path"><router-link :to="{path:item.path}">{{item.name}}</router-link></div>
-                </div>	
-        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <aside class="sidebar">
+        <ul @click="showItem($event)">
+          <li class="sidebar-item" data-id="1" @click="getTitle">
+            JS基础
+            <ul v-if="flag">
+              <li>JS历史</li>
+              <li>Js基本数据类型</li>
+              <li>Js基本语法</li>
+            </ul>
+          </li>
+          <li class="sidebar-item" data-id="2" @click="getTitle">
+            HTML相关
+            <ul v-if="active">
+              <li>JS历史</li>
+              <li>Js基本数据类型</li>
+              <li>Js基本语法</li>
+            </ul>
+          </li>
+          <li class="sidebar-item" data-id="3" @click="getTitle">
+            Js三座大山
+            <ul v-if="flag2">
+              <li>原型链</li>
+              <li>this</li>
+              <li>ajax</li>
+            </ul>
+          </li>
+          <li class="sidebar-item" data-id="4"  @click="getTitle">代码demo</li>
+          <li class="sidebar-item" data-id="5"  @click="getTitle">Vue
+              <ul v-if="flag3">
+                  <li>Vue基本语法</li>
+                  <li>Vue采坑</li>
+                  <li>Vue理解</li>	
+              </ul>
+          </li>
+          <li class="sidebar-item" data-id="6" @click="getTitle">React
+              <ul v-if="flag4">
+                  <li>React基本语法</li>
+                  <li>React采坑</li>
+                  <li>React理解</li>	
+              </ul>
+          </li>
+        </ul>
+      </aside>
+    <div class="main">
+      <main
+        class="theme-item"
+        v-for="(item,index) in article[0]"
+        :key="index"
+        @click="getWrap($event)"
+      >
+        <li class="wrap-item" :data="item._id">{{item.Author}}</li>
+      </main>
+      </div>
+       <footer>
+        <div>我是页脚的部分:请添加内容</div>
+      </footer>
     </div>
+  </div>
 </template>
 <style scoped>
-.canvas{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    z-index: -1;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-.item-path{
-    position: absolute;
-    top:0.5rem;
-    left: 0.3rem;
+.itemmenu {
+  display: block;
 }
-img{
-    position: absolute;
-    height: 0.5rem;
-    width: 0.5rem;
-    top: 0;
-    left:0.25rem;
+.itemMenu {
+  display: none;
 }
-a{
-    text-decoration:none;
-    color: black;
+a {
+  text-decoration: none;
+  color: black;
 }
-
-.item{
-    position: relative;
-    width: 15%;
-    height: 100%;
-    flex: 1;
+footer {
+  left: 0;
+  bottom: 0;
+  height: 150px;
+  width: 80%;
+  margin-left: 330px;
+  margin-top: 50px;
 }
-.footer{
-    position: fixed;
-    bottom: 0;
-    height: 1.5rem;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items:center;
+.main{
+  border: 1px solid red;
+  height: 800px;
+  max-height: 100%;
+  width: 600px;
+  position: relative;
+  margin-top: 100px;
+  left: 60%;
+  transform: translateX(-50%)
 }
-/* .show-enter, .show-leaver-to{
-    transition: all 1s ease;
-    transform: translateX(100px)
+.container {
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; */
+  height: 1000px;
+  max-width: 100%;
+  border: 1px solid black;
 }
-.show-enter-active, .show-leaver-active{
-    transition: opacity 5s ease-out;
-    transition: all 0.5s ease;
+/* .clearfix::after {
+  display: block;
+  clear: both;
+  content: "";
 } */
-.show-enter-active{
-    transition: all 0.5s ease;
-}
-.show-leave-active{
-   transition: all 0.5s ease;
-}
-.show-enter{
-    transform: translateX(100px);
-    opacity: 0;
-}
-.show-leave-to{
-    transform: translateX(400px);
-}
-.button{
-    background:url('../assets/menu.png') no-repeat 100% 100%;
-    background-size: 75%;
-    position: absolute;
-    height: 7%;
-    width: 10%;
-    top: 0;
-    right: 0.12rem;
-    z-index: 100;
-}
-.mycover{
-    width: 100%;
-    height: 100%;
-    position:fixed;
-    background-color: rgba(0,0,0,.7);
-    top: 0;
-    left: 0;
-    z-index: 99;
-    opacity: 0.5;
-}
-.cover{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-}
-.el-header{
-    position: relative;
-}
-.el-button--primary{
-    position: absolute;
-    background-color: #4f5458;
-    left:0;
-    top:0.1rem;
-}
-.el-menu{
-    width: 100%;
-}
-.el-menu-item{
-    font-size: 0.12rem;
-}
-.el-main{
-    background-color:#FFF;
-    border:0.06rem;
-    padding: 0;
-    font-size: 0.12rem;
-    width: 100px;
-}
-.el-popper{
-    margin-top: -0.2rem;
-}
-.el-dropdown{
-    position: relative;
-    width: 70%;
-    height: 100%;
-}
-.el-dropdown-link {
-    cursor: pointer;
-    color:#54595f;
-    position: absolute;
-    right: 0.2rem;
-    font-size: 0.2rem;
-    top:20%;
-  }
-  .el-icon-arrow-down {
-    font-size: 12px;
-  }
-.article{
-    height: 1rem;
-    text-align: center;
 
+main {
+  width: 50%;
+  top: 120px;
+  margin-left: 500px;
+  margin-top: 50px;
+  background: #e3e3e3;
 }
-.context{
-    width: 100%;
-    height: 100%;
-    font-size: 0.16rem;
-    background-color: #f5f7f9
+.sidebar > ul {
+  padding: 20px;
+  overflow-y: auto;
 }
-.el-container{
-    height: 100%;
+.wrap-item {
+  border: 1px solid black;
+  margin-top: 50px;
+  height: 100px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
 }
 
-.el-aside{
-    color:#333;
-    height: 100%;
+.sidebar-item {
+  border: 1px solid black;
+  display: block;
+  margin-top: 50px;
+  font-size: 20px;
+  font-weight: 700;
 }
-.el-breadcrumb{
-    font-size: 0.12rem;
-    height: 0.5rem;
-    width: 2rem;
-    position: absolute;
-    font-size: 0.2rem;
-    transform: translateY(0.05rem)
+.sidebar {
+  font-size: 18px;
+  width: 300px;
+  left: 0;
+  position: fixed;
+  bottom: 0;
+  top: 55px;
+  overflow-y: auto;
+  display: inline-block;
+  background: #e3e3e3;
 }
-
-
-
-</style>
-<script>
-import menu from '../components/menuList'
-import axios from 'axios'
-import Element from 'element-ui'
-import backgr from '../components/backgr'
-import backgr2 from '../components/backgr2'
-const book = require('../assets/book.png')
-const memory = require('../assets/pen.png')
-const penceil = require('../assets/penceil.png')
-const star = require('../assets/star.png')
-// console.log(backgr)
-// var canvas = document.getElementById('canvas')
-// console.log(canvas)
-
-
-// console.log(book)
-// console.log(memory)
-// console.log(penceil)
-// console.log(star)
-// console.log(Element)
-export default {
-    data(){
-        return {
-            article:[],
-            flag:false,
-            footer:[
-                {
-                    name:'学习',
-                    path:'/learn',
-                    img:book,
-                },
-                {
-                    name:'记忆',
-                    path:'/memory',
-                    img:memory,
-                },
-                {
-                    name:'笔记',
-                    path:'/note',
-                    img:penceil,
-                },
-                {
-                    name:'倒计时',
-                    path:'/timeClick',
-                    img:star,
-                }
-            ]
-            
-        }
-    },
-    components:{
-        'menuList':menu,
-        'backgr':backgr,
-        'backgr2':backgr2
-    },
-    methods:{
-        manger(){
-            this.$router.push({'path':'/loging'})
-        },
-        getSon(){
-            axios.get('/addArticle').then(res => {
-                console.log(res.data)
-                this.article = res.data
-            })
-        },    
-        change(){
-            // console.log('点击')
-            this.flag =! this.flag
-            console.log(this.flag)
-        },
-
-        // mystart(){
-        //     var canvas = document.getElementById('canvas')
-        //     ctx = canvas.getContext('2d'),
-        //     w = canvas.width = window.innerWidth
-        //     h = canvas.height = window.innerHeight
-        //     let hue = 217
-        //     let stars = []
-        //     let count = 0 
-        //     maxStart = 1200
-        //     var canvas2 = document.createElement('canvas')
-        //     ctx2 = canvas2.getContext('2d')
-        //     canvas2.width=100
-        //     canvas2.height=100
-        //     var half = canvas2.width/2
-        //     gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
-        //     gradient2.addColorStop(0.025, '#fff');
-        //     gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
-        //     gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
-        //     gradient2.addColorStop(1, 'transparent');
-
-        //     ctx2.fillStyle = gradient2;
-        //     ctx2.beginPath();
-        //     ctx2.arc(half, half, half, 0, Math.PI * 2);
-        //     ctx2.fill();
-
-        // },
-        
-
-    },
-    created(){
-        
+.context > img {
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+.context {
+  font-size: 0.14px;
+  width: 100%;
+  height: 100%;
+}
+nav {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  border: 1px solid black;
+  top: 0;
+  background: #e3e3e3;
+}
+.nav {
+  position: relative;
+  max-width: 100%;
+  height: 50px;
+  border: 1px solid black;
+}
+.nav > span {
+  position: absolute;
+  left: 0;
+  font-size: 20px;
+  margin: 10px 0 0 10px;
+}
+.linkList {
+  position: absolute;
+  width: 40%;
+  max-width: 1669px;
+  height: 50px;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  font-size: 18px;
+}
+.linkList > li:first-child {
+  margin-left: 0;
+}
+.link-item {
+  width: 100px;
+  border: 1px solid black;
+  margin-left: 50px;
+  padding: 12px;
+}
+li {
+  list-style: none;
+}
+@media (max-width:500px) {
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
     }
 
+  .sidebar{
+    width: 150px;
+  }
+  .main{
+    top: 0;
+    width: 64%;
+    height: 500px;
+    top: 10px;
+    z-index: 101;
+    right: 60%;
+    transform: translateX(-37%);
+    position: relative;
+  }
+  .link-item{
+    margin-left: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .container{
+    height: 700px;
+    width: 100%;
+  }
+.linkList>a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+  .linkList{
+    right: 50px;
+    width: 50%;
+  }
+  footer{
+    margin: 0;
+    height: 20px;
+  }
+  
+}
+</style>>
+<script>
+import menu from "../components/menuList";
+import axios from "axios";
+import Element from "element-ui";
+import backgr from "../components/backgr";
+import backgr2 from "../components/backgr2";
+const book = require("../assets/book.png");
+const memory = require("../assets/pen.png");
+const penceil = require("../assets/penceil.png");
+const star = require("../assets/star.png");
+export default {
+  data() {
+    return {
+      flag: false,
+      flag2: false,
+      flag3: false,
+      flag4: false,
+      flag5: false,
+      active: false,
+      article: [],
+      flag: false,
+      wrap: "",
+      footer: [
+        {
+          name: "学习",
+          path: "/learn",
+          img: book
+        },
+        {
+          name: "记忆",
+          path: "/memory",
+          img: memory
+        },
+        {
+          name: "笔记",
+          path: "/note",
+          img: penceil
+        },
+        {
+          name: "倒计时",
+          path: "/timeClick",
+          img: star
+        }
+      ]
+    };
+  },
+  components: {
+    menuList: menu,
+    backgr: backgr,
+    backgr2: backgr2
+  },
+  methods: {
+    manger() {
+      this.$router.push({ path: "/loging" });
+    },
+    getSon() {
+      axios.get("/addArticle").then(res => {
+        console.log(res.data);
+        this.article = res.data;
+      });
+    },
+    change() {
+      // console.log('点击')
+      this.flag = !this.flag;
+      console.log(this.flag);
+    },
+    showItem(e) {
+      let id = e.target.dataset.id;
+      switch (id) {
+        case "1":
+          this.flag = !this.flag;
+          break;
+        case "2":
+          this.active = !this.active;
+          break;
+        case "3":
+          this.flag2 = !this.flag2;
+          break;
+        case "4":
+          console.log(4);
+        //   this.flag3 = !this.flag3;
+          break;
+        case "5":
+          console.log(5);
+          this.flag3= !this.flag3;
+          break;
+        case "6":
+          console.log(6);
+          this.flag4 = !this.flag4;
+          break;
+      }
+    },
+    getTitle() {
+      axios.get("api/addArticle").then(res => {
+        this.title = res.data;
+        this.article.push(this.title);
+      });
+    },
+    getWrap(e) {
+      console.log(e);
+      let id = e.target.getAttribute("data");
+      console.log(id);
+      this.$router.push({ path: "/wrap", query: { _id: id } });
+      axios
+        .get("/api/note", {
+          params: {
+            _id: id
+          }
+        })
+        .then(res => {
+          console.log(res.data);
+          this.wrap = res.data[0].article;
+        });
+      // axios.get()
+    }
+
+    // mystart(){
+    //     var canvas = document.getElementById('canvas')
+    //     ctx = canvas.getContext('2d'),
+    //     w = canvas.width = window.innerWidth
+    //     h = canvas.height = window.innerHeight
+    //     let hue = 217
+    //     let stars = []
+    //     let count = 0
+    //     maxStart = 1200
+    //     var canvas2 = document.createElement('canvas')
+    //     ctx2 = canvas2.getContext('2d')
+    //     canvas2.width=100
+    //     canvas2.height=100
+    //     var half = canvas2.width/2
+    //     gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
+    //     gradient2.addColorStop(0.025, '#fff');
+    //     gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
+    //     gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
+    //     gradient2.addColorStop(1, 'transparent');
+
+    //     ctx2.fillStyle = gradient2;
+    //     ctx2.beginPath();
+    //     ctx2.arc(half, half, half, 0, Math.PI * 2);
+    //     ctx2.fill();
+
+    // },
+  },
+  created() {},
+  mounted() {}
+};
 </script>
 

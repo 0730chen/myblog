@@ -1,11 +1,37 @@
 <template>
     <div class="context">
-         <div class="menuCover" v-if="flag" @click="change"></div>
-        <blogTitle @titleV="getF" :flag="flag"></blogTitle>
-        <mymenu  v-if="flag"></mymenu>
+         <!-- <div class="menuCover" v-if="flag" @click="change"></div> -->
+        <el-row class="tac">
+  <el-col :span="12">
+    <el-menu
+      default-active="2"
+      class="el-menu-vertical-demo"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b">
+      <el-submenu index="1">
+        <template slot="title">
+          <i class="el-icon-s-unfold"></i>
+          <span>首页</span>
+        </template>
+        <el-menu-item-group>
+          <a href="#/addArticle"><el-menu-item index="1-1">添加文章</el-menu-item></a>
+          <a href="#/Message"><el-menu-item index="1-2">文章目录</el-menu-item></a>
+        </el-menu-item-group>
+        <el-menu-item-group>
+          <a href="#/holiday"><el-menu-item index="1-3">假期</el-menu-item></a>
+        </el-menu-item-group>
+      </el-submenu>
+      
+     
+    </el-menu>
+  </el-col>
+</el-row>
+        <!-- <blogTitle @titleV="getF" :flag="flag"></blogTitle> -->
+        <!-- <mymenu  v-if="flag"></mymenu> -->
             <!-- 在子组件上定义属性可以是父组件传值给子组件, 子组件上定义事件是子组件通过事件传值给父组件 -->
             <!-- <mymenu v-if="flag" :value="menuList" :parentV="childrenV" @childrenFn='getValue'></mymenu> -->
-        <div style="height:0.2rem"></div>
+        <!-- <div style="height:0.2rem"></div> -->
         <el-table
       :data="User"
       style="width: 100%">
@@ -22,6 +48,31 @@
         </div>
 </template>
 <style scoped>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+.el-table{
+    margin-top: 50px;
+}
+.el-menu-item{
+    min-width: 188px;
+}
+.el-menu{
+    height: 100%;
+}
+.el-col{
+    height: 100%;
+}
+.el-row{
+    height: 100%;
+    width: 20%;
+}
+body{
+    width: 100%;
+    height: 100%;
+}
 .menuCover{
     position: absolute;
     width: 100%;
@@ -56,7 +107,11 @@
 .context{
     width: 100%;
     height:100%;
-    font-size: 0.16rem;
+    font-size: 14px;
+    position: relative;
+    left: 0;
+    display: flex;
+
 }
 .el-container{
     height: 100%;
@@ -80,7 +135,29 @@ export default {
             childrenV:'传给子组件',
             menuV:'',
             User:[],
-            CoverF:false
+            CoverF:false,
+            menuList:[
+                {
+                    name:'文章集中站',
+                    path:'/register',
+                },
+                {
+                    name:'添加文章',
+                    path:'/addArticle'
+                },
+                {
+                    name:'留言',
+                    path:'/Message'
+                },
+                {
+                    name:'放假',
+                    path:'/holiday'
+                },
+                {
+                    name:'回到首页',
+                    path:'/'
+                }
+            ]
         }
     },
     components:{
@@ -107,7 +184,7 @@ export default {
 
         },
         register(){
-            axios.get('/re').then(res=>{
+            axios.get('/api/re').then(res=>{
                 console.log(res.data)
                 this.User = res.data
                 // console.log(typeof(res.data.data))

@@ -6,13 +6,11 @@ const path = require('path')
 
 module.exports = {
     dev: {
-
-        // Paths
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
             '/api': {
-                target: 'http://chentian.ltd:1024',
+                target: 'http://127.0.0.1:8888/',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': '',

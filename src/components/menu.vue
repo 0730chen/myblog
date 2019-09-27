@@ -1,6 +1,5 @@
 <template>
     <div class="menu">
-        <!-- <button @click="putValue"></button> -->
         <div class="menu-item" v-for="(menu,index) in menuList" :key="index">
             <li>
                 <routerLink :to="menu.path" style="color:white">

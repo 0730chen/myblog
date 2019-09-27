@@ -1,76 +1,33 @@
 <template>
   <div class="page">
+    <img src="../assets/loging.jpg" alt="">
     <title>My Blog</title>
     <div class="container">
-            <div><strong>请登录</strong></div>
-            <input type="text" placeholder="姓名" name="username" id="name" v-model="username">
-            <input type="password" placeholder="密码" name="password" id="password" v-model="password">
-            <input type="submit" value="注册" id="register" @click="sendCount" >
-            <input type="submit" value="登陆" id="add" @click="loging">
+            <div><strong>后台博客管理系统</strong></div>
+            <input type="text" placeholder="姓名" name="username" id="name" v-model="username" autocomplete="off">
+            <input type="password" placeholder="密码" name="password" id="password" v-model="password" autocomplete="off">
+            <!-- <input type="submit" value="注册" id="register" @click="sendCount" autocomplete="false"> -->
+            <input type="submit" value="登陆" id="add" @click="loging" >
     </div>
-    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-    <!-- <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#add').click(function() {
-                var user = $("#name").val()
-                var pws = $("#password").val()
-                console.log(user, pws)
-                if (user == '' || pws == '') {
-                    alert('用户名和密码不能为空')
-                } else {
-                    $.ajax({
-                        method: 'POST',
-                        url: '/signin',
-                        data: {
-                            name: user,
-                            pws: pws
-                        },
-                        dataType: 'json',
-                        success: function(response) {
-                            alert('登陆成功')
-                                // window.location.href = response.url
-                            setTimeout(function() {
-                                window.location.href = response.url
-                            }, 3000)
-                            console.log(response.url)
-                        }
-
-                    })
-                }
-
-                // $.ajax({
-                //     method: 'POST',
-                //     url: '/signin',
-                //     data: {
-                //         name: user,
-                //         pws: pws
-                //     },
-                //     dataType: 'json',
-                //     success: function(response) {
-                //         alert('注册成功')
-                //             // window.location.href = response.url
-                //         setTimeout(function() {
-                //             window.location.href = response.url
-                //         }, 3000)
-                //         console.log(response.url)
-                //     }
-
-                // })
-            })
-        })
-    </script>
-    </script> -->
-    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+   
   </div>
 </template>
 
 <style scoped>
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 .page{
+  position:absolute;
     width: 100%;
     height: 100%;
     background-color:white;
     font-size: 0.16rem;
+    }
+    .page>img{
+      max-width: 100%;
     }
 
     .title{
@@ -78,21 +35,35 @@
     }
     .container {
         position: relative;
-        width: 3.5rem;
+        width: 0.8rem;
         margin: 0 auto;
-        height: 3.5rem;
+        height: 0.8rem;
         padding: 0;
-        transform: translateY(1rem);
+        top: 0;
+        transform: translateY(-2rem);
         box-shadow: 1px 5px 10px black;
     }
-   
+   .container>div{
+     position: absolute;
+     width:100%;
+     height: 0.1rem;
+     left: 50%;
+     top:0;
+     transform: translateX(-50%);
+     /* border:1px solid black; */
+     font-size: 14px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
     
     #name {
         position: absolute;
-        width: 2rem;
-        height: 0.3rem;
-        top: 1.2rem;
-        left: 0.75rem;
+        width: 0.5rem;
+        height: 0.08rem;
+        top: 40%;
+        left: 50%;
+        transform: translateX(-50%);
         background-color: whitesmoke;
         padding: 0;
         border: 0;
@@ -102,10 +73,11 @@
     
     #password {
         position: absolute;
-        width: 2rem;
-        height: 0.3rem;
-        top: 1.8rem;
-        left: 0.75rem;
+        width: 0.5rem;
+        height: 0.08rem;
+        top: 60%;
+        left:50%;
+        transform:translateX(-50%);
         background-color: whitesmoke;
         padding: 0;
         border: 0;
@@ -114,29 +86,30 @@
     }
     #register{
         position: absolute;
-        width: 0.5rem;
-        height: 0.25rem;
-        border: 0;
-        bottom: 1rem;
-        right: 0.5rem;
+        width: 0.2rem;
+        height: 0.08rem;
+        border: 1px solid black;
+        bottom: 0rem;
+        right: 0;
         border-radius: 0.04rem;
-        background-color:white;
+        color: aliceblue;
+        background-color:#6188f5;
     }
     
     #add {
         color: aliceblue;
         position: absolute;
-        width: 2.5rem;
-        height: 0.3rem;
+        width: 0.2rem;
+        height: 0.08rem;
         background-color: #6188f5;
-        bottom: 0.5rem;
-        right: 0.5rem;
+        bottom: 0.1rem;
+        left: 50%;
+        transform: translateX(-50%);
         border-radius: 0.04rem;
     }
 </style>
 <script>
 import axios from 'axios'
-// console.log(axios)
 export default {
   data(){
     return{
@@ -146,20 +119,12 @@ export default {
   },
   methods:{
     sendCount(e){
-      // console.log(this.username)
-      // console.log(this.password)
-      // axios.get('/api/').then(res =>{
-      //   console.log('请求成功')
-      //   // console.log(res.data)
-      // })
-      axios.post('/add',{
+      axios.post('/api/add',{
         'data':'register',
         user:{
           'userName':this.username,
         'passWord':this.password
         },
-        // 'userName':this.username,
-        // 'passWord':this.password
       }).then(res =>{
         console.log(res.data)
         if(res.data=='账号已经注册过了'){
@@ -168,25 +133,15 @@ export default {
           alert('注册成功')
           this.$router.push({'path':'manage'})
         }
-        // alert('注册'+res.data)
-
-        // this.$router.push({'path':'manage'})
         
       }).catch(
         error => {
           console.log(error)
         }
       )
-        // console.log(e)
-      // axios.get('http://localhost:8081/sign').then(res =>{
-      //   console.log('成功')
-      // }
-      // )
     },
     loging(e){
-      // console.log(this.username)
-      // console.log(this.password)
-      axios.post('/loging',
+      axios.post('/api/loging',
         {
           'username':this.username,
         'passWord':this.password

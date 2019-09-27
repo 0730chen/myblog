@@ -1,7 +1,7 @@
 <template>
     <div class="mean">
         <div class="avatar">
-            <img src="../assets/logo.png" alt="">
+            <img src='../assets/pikaqiu.png' alt="">
         </div>
         <div v-for="(menu,index) of menuLs" :key="index" class="lists">
             <div class="list"><router-link :to="menu.path">{{menu.name}}</router-link></div>
@@ -10,7 +10,7 @@
 </template>
 <style scoped>
 a{
-    color: aliceblue;
+    color: black;
     text-decoration: none;
 }
 .lists{
@@ -19,22 +19,26 @@ a{
     flex-direction: column;
 }
 .list{
-    height: 1rem;
-    color: aliceblue;
+    height: 0.65rem;
+    color: black;
 }
 .avatar{
     position: relative;
+    max-width: 100%;
 
+}
+img{
+    max-width: 100%;
 }
 .mean{
     position: absolute;
     z-index: 120;
-    height: 100%;
-    width: 70%;
+    max-height: 100%;
+    max-width: 70%;
     right: 0;
     border:1px solid black;
-    color: aliceblue;
-    background-color: black;
+    background: rgb(235, 225, 200)
+   
 }
     
 </style>
