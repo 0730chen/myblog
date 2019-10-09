@@ -125,8 +125,8 @@ footer {
 
 main {
   width: 50%;
-  top: 120px;
-  margin-left: 500px;
+  top: 50px;
+  margin-left: 150px;
   margin-top: 50px;
   background: #e3e3e3;
 }
@@ -137,7 +137,7 @@ main {
 .wrap-item {
   border: 1px solid black;
   margin-top: 50px;
-  height: 100px;
+  height: 40px;
   font-size: 30px;
   display: flex;
   justify-content: center;
@@ -261,6 +261,12 @@ li {
   footer{
     margin: 0;
     height: 20px;
+  }
+  .wrap-item{
+    font-size: 15px;
+  }
+  main{
+    margin-left: 60px;
   }
   
 }

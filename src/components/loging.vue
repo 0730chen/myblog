@@ -20,13 +20,16 @@
   box-sizing: border-box;
 }
 .page{
-  position:absolute;
+    position: relative;
     width: 100%;
     height: 100%;
     background-color:white;
-    font-size: 0.16rem;
+    font-size: 14px;
     }
     .page>img{
+      position: absolute;
+      left: 0;
+      top: 0;
       max-width: 100%;
     }
 
@@ -34,19 +37,18 @@
       font-size: 0.16px;
     }
     .container {
-        position: relative;
-        width: 0.8rem;
-        margin: 0 auto;
-        height: 0.8rem;
+        position: absolute;
+        width: 800px;
+        height: 400px;
         padding: 0;
-        top: 0;
-        transform: translateY(-2rem);
+        left: 50%;
+        top:100px;
+        transform: translateX(-50%);
         box-shadow: 1px 5px 10px black;
     }
    .container>div{
      position: absolute;
      width:100%;
-     height: 0.1rem;
      left: 50%;
      top:0;
      transform: translateX(-50%);
@@ -59,8 +61,8 @@
     
     #name {
         position: absolute;
-        width: 0.5rem;
-        height: 0.08rem;
+        width: 200px;
+        height: 40px;
         top: 40%;
         left: 50%;
         transform: translateX(-50%);
@@ -73,8 +75,8 @@
     
     #password {
         position: absolute;
-        width: 0.5rem;
-        height: 0.08rem;
+        width: 200px;
+        height: 40px;
         top: 60%;
         left:50%;
         transform:translateX(-50%);
@@ -99,13 +101,25 @@
     #add {
         color: aliceblue;
         position: absolute;
-        width: 0.2rem;
-        height: 0.08rem;
+        width: 80px;
+        height: 40px;
         background-color: #6188f5;
         bottom: 0.1rem;
         left: 50%;
         transform: translateX(-50%);
         border-radius: 0.04rem;
+    }
+
+    @media (max-width: 500px) {
+      *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      img{
+        width: 100%;
+        height: 100%;
+      }
     }
 </style>
 <script>
