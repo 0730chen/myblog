@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var vue_1 = require("vue");
-var vue_router_1 = require("vue-router");
-var loging_vue_1 = require("../components/loging.vue");
-var blog_vue_1 = require("../components/blog.vue");
-var manage_vue_1 = require("./../components/manage.vue");
-var register_vue_1 = require("../components/register.vue");
-var addArticle_vue_1 = require("../components/addArticle.vue");
-var message_vue_1 = require("../components/message.vue");
-var holiday_vue_1 = require("../components/holiday.vue");
-var timeClick_vue_1 = require("../components/timeClick.vue");
-var note_vue_1 = require("../components/note.vue");
-var wrap_vue_1 = require("../components/wrap.vue");
+const vue_1 = require("vue");
+const vue_router_1 = require("vue-router");
+const loging_vue_1 = require("../components/loging.vue");
+const blog_vue_1 = require("../components/blog.vue");
+const manage_vue_1 = require("./../components/manage.vue");
+const register_vue_1 = require("../components/register.vue");
+const addArticle_vue_1 = require("../components/addArticle.vue");
+const message_vue_1 = require("../components/message.vue");
+const holiday_vue_1 = require("../components/holiday.vue");
+const timeClick_vue_1 = require("../components/timeClick.vue");
+const note_vue_1 = require("../components/note.vue");
+const wrap_vue_1 = require("../components/wrap.vue");
 vue_1.default.use(vue_router_1.default);
 exports.default = new vue_router_1.default({
     routes: [{
@@ -66,4 +66,3 @@ exports.default = new vue_router_1.default({
         }
     ]
 });
-//# sourceMappingURL=index.js.map

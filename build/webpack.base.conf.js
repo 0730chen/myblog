@@ -89,6 +89,10 @@ module.exports = {
           appendTsSuffixTo: [/\.vue$/],
         }
       },
+      {
+        test:/\.sass$/,
+        loaders:['style','css','sass']
+      }
     ]
   },
   node: {

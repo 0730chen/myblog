@@ -1,157 +1,63 @@
 <template>
-  <div class="page">
-    <img src="../assets/loging.jpg" alt="">
-    <title>My Blog</title>
-    <div class="container">
-      <div><strong>后台博客管理系统</strong></div>
-      <input type="text" placeholder="姓名" name="username" id="name" v-model="username" autocomplete="off">
-      <input type="password" placeholder="密码" name="password" id="password" v-model="password" autocomplete="off">
-      <!-- <input type="submit" value="注册" id="register" @click="sendCount" autocomplete="false"> -->
-      <input type="submit" value="登陆" id="add" @click="loging">
-    </div>
-
+  <div id="login">
+    <el-form class="login-form">
+      <h3>博客登陆界面</h3>
+      <el-form-item label="用户名" prop="pass">
+        <el-input type="password" autocomplete="off" v-model="username"></el-input>
+      </el-form-item>
+      <el-form-item label="密码" prop="checkPass">
+        <el-input type="password" autocomplete="off" v-model="password"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="loginButton">登陆</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
-
-<style scoped>
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  .page {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    font-size: 14px;
-  }
-
-  .page > img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    max-width: 100%;
-  }
-
-  .title {
-    font-size: 0.16px;
-  }
-
-  .container {
-    position: absolute;
-    width: 800px;
-    height: 400px;
-    padding: 0;
-    left: 50%;
-    top: 100px;
-    transform: translateX(-50%);
-    box-shadow: 1px 5px 10px black;
-  }
-
-  .container > div {
-    position: absolute;
-    width: 100%;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-    /* border:1px solid black; */
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  #name {
-    position: absolute;
-    width: 200px;
-    height: 40px;
-    top: 40%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: whitesmoke;
-    padding: 0;
-    border: 0;
-    border-radius: 4px;
-    border: 1px solid black;
-  }
-
-  #password {
-    position: absolute;
-    width: 200px;
-    height: 40px;
-    top: 60%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: whitesmoke;
-    padding: 0;
-    border: 0;
-    border-radius: 4px;
-    border: 1px solid black;
-  }
-
-  #register {
-    position: absolute;
-    width: 0.2rem;
-    height: 0.08rem;
-    border: 1px solid black;
-    bottom: 0rem;
-    right: 0;
-    border-radius: 0.04rem;
-    color: aliceblue;
-    background-color: #6188f5;
-  }
-
-  #add {
-    color: aliceblue;
-    position: absolute;
-    width: 80px;
-    height: 40px;
-    background-color: #6188f5;
-    bottom: 0.1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 0.04rem;
-  }
-
-  @media (max-width: 500px) {
-    * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-</style>
 <script lang="ts">
   import axios from 'axios'
   import Vue from 'vue'
   import {Component} from "vue-property-decorator";
-
-
+  import {login,Regist} from '../api/axios'
+  interface User{
+    username:string|number
+    password:string|number
+  }
+  import {Form} from "element-ui";
+  //@Component修饰符注明了此类为一个Vue组件
   @Component
   export default class LoginForm extends Vue {
-    //初始数据
-
     message: string = 'hello'
-    helloMsg = 'hello'
+    password: string | number
+    username: string | number
+    private validatePass: any;
+    private validatePass2: any;
+    data() {
+      return {
+        password: '',
+        username: '',
+        pass: '',
+        checkPass: '',
+        age: '',
+        radio: '1',
+        input: '',
+        checked: true,
+        //检验规则
+        rules:{
+          pass:[{
+            validator:this.validatePass,tirgger:'blur'
+          }],
+          checkPass:[
+            {validator:this.validatePass2,trigger:'blur'}
+          ]
+        }
+      }
+    }
+    //注册按钮目前用不到
+    private sendCount(e:void) {
+      let use = {"username":this.username,"password":this.password}
+      Regist('/api/add',use)
 
-    // username:String
-    // password:String
-        password:string
-        username:string
-        private data(){
-      return{
-        password:'',
-        username:''
-        }
-        }
-    sendCount(e) {
       axios.post('/api/add', {
         'data': 'register',
         user: {
@@ -174,32 +80,36 @@
       )
     }
 
-    loging(e) {
-      console.log(this.password,this.username)
-      axios.post('/api/loging',
-        {
-          'username': 'sss',
-          'passWord': 'sss'
-        },
-      ).then(res => {
-
-        if (res.data == '验证通过') {
-          alert('登陆成功')
-          this.$router.push({'path': 'manage'})
-
-        } else {
-          alert('登陆失败--请检查账号密码')
-        }
-      })
+    private loginButton(e){
+      let use = {"username":this.username,"password":this.password}
+      console.log(use);
+      login('/api/loging',use)
     }
 
-    some() {
-      // this.testProps
-      console.log(this);
+    //登陆
+    // private loging(e: void) {
+    //   console.log(this.password, this.username)
+    //   axios.post('/api/loging',
+    //     {
+    //       'username': '',
+    //       'passWord': ''
+    //     },
+    //   ).then(res => {
+    //
+    //     if (res.data == '验证通过') {
+    //       alert('登陆成功')
+    //       this.$router.push({'path': 'manage'})
+    //
+    //     } else {
+    //       alert('登陆失败--请检查账号密码')
+    //     }
+    //   })
+    // }
+
+    private some(e: void): void {
     }
 
-    mounted(): void {
-      this.some()
+    mounted(url: string): void {
     }
   }
 </script>
