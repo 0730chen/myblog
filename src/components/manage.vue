@@ -16,14 +16,12 @@
         </template>
         <el-menu-item-group>
           <a href="#/addArticle"><el-menu-item index="1-1">添加文章</el-menu-item></a>
-          <a href="#/Message"><el-menu-item index="1-2">文章目录</el-menu-item></a>
+          <a href="#/"><el-menu-item index="1-2">文章目录</el-menu-item></a>
         </el-menu-item-group>
         <el-menu-item-group>
           <a href="#/holiday"><el-menu-item index="1-3">假期</el-menu-item></a>
         </el-menu-item-group>
       </el-submenu>
-      
-     
     </el-menu>
   </el-col>
 </el-row>
@@ -47,81 +45,9 @@
     </el-table>
         </div>
 </template>
-<style scoped>
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing:border-box;
-}
-.el-table{
-    margin-top: 50px;
-}
-.el-menu-item{
-    min-width: 188px;
-}
-.el-menu{
-    height: 100%;
-}
-.el-col{
-    height: 100%;
-}
-.el-row{
-    height: 100%;
-    width: 20%;
-}
-body{
-    width: 100%;
-    height: 100%;
-}
-.menuCover{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #2c3b41;
-    opacity: 0.5;
-    z-index: 99;
-}
-#myMenu{
-    width: 60px;
-    height: 30px;
-    position: absolute;
-    top: 0.04rem;
-    left: 0;
-    background: url('../assets/menu.png') 100% 100% no-repeat;
-    background-size: 50%;
-    margin: 0 auto;
-    z-index:100;
-}
-.el-header{
-    position: fixed;
-    width: 100%;
-    top: 0;
-    right: 0;
-    border: 1px solid black;
-    font-size: 0.16rem;
-    color: white;
-    background-color:rgb(185, 185, 219)
-  
-}
-
-.context{
-    width: 100%;
-    height:100%;
-    font-size: 14px;
-    position: relative;
-    left: 0;
-    display: flex;
-
-}
-.el-container{
-    height: 100%;
-    border:1px solid black;
-}
-</style>
 <script>
 
 import axios from 'axios'
-import Element from 'element-ui'
 import menu from '../components/menu'
 import blogTitle from '../components/title'
 
@@ -163,7 +89,7 @@ export default {
     components:{
         'mymenu':menu,
         'blogTitle':blogTitle
-        
+
     },
     methods: {
         getF(e){
@@ -194,22 +120,22 @@ export default {
                 // console.log(this.User)
                 // arr.forEach(element => {
                 //     console.log(element.user.userName)
-                    
+
                 // });
-            
-            
-                
-                
-                
+
+
+
+
+
             }).catch(err=>{
                 console.log(err)
             })
         }
-        
+
     },
     created() {
         this.register()
     },
-   
+
 }
 </script>

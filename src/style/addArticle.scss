@@ -1,0 +1,24 @@
+.Addarticle {
+  width: 35%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  .el-form {
+    width: 50%;
+  }
+
+  .editor {
+    .quill-editor {
+      width: 600px;
+    }
+  }
+
+  #addWrap {
+    margin-top: 50px;
+    width: 100px;
+  }
+
+}
+
+

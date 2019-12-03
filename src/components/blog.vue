@@ -146,44 +146,20 @@
     private ShowMenu(e) {
       e.preventDefault()
       let id = e.currentTarget.attributes[0]["value"]
-      // console.log(id);
-      // console.log(this);
+
       this.menu.forEach((e, index) => {
-        // console.log(e,index)
         if (index === parseInt(id)) {
           e.show ? e.show = 0 : e.show = 1
-          // if(e.show){
-          //   e.show =0
-          // }else{
-          //   console.log(e)
-          //   e.show =1
-          // }
+
         }
       })
-      // let hashMap = {
-      //   "0": true,
-      //   "1": true,
-      //   "2": true,
-      //   "3": true,
-      //   "4": true,
-      //   "5": true,
-      // }
+
     }
 
   }
 
 
   // data() {
-  //   return {
-  //     flag: false,
-  //     flag2: false,
-  //     flag3: false,
-  //     flag4: false,
-  //     flag5: false,
-  //     active: false,
-  //     article: [],
-  //     flag: false,
-  //     wrap: "",
   //     footer: [
   //       {
   //         name: "学习",

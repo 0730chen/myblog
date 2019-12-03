@@ -1,9 +1,6 @@
 <template>
     <div class="context">
-        <!-- <div class="menuCover" v-if="flag" @click="change"></div>
-        <blogTitle @titleV="getF" :flag="flag"></blogTitle>
-        <mymenu v-if="flag"></mymenU> -->
-        <div class="Message">{{dayMessage}}</div> 
+        <div class="Message">{{dayMessage}}</div>
         <div class="Name">{{dayName}}</div>
     </div>
 </template>
