@@ -8,15 +8,20 @@ import addArticle from '../components/addArticle.vue'
 import message from '../components/message.vue'
 import holiday from '../components/holiday.vue'
 import timeClick from '../components/timeClick.vue'
-import note from '../components/note.vue'
-// @ts-ignore
 import wrap from '../components/wrap.vue'
-
+import Comments from '../components/Comments.vue'
+import Home from '../components/Home.vue'
 Vue.use(Router)
 
 export default new Router({
-    routes: [{
-            path: '/',
+    routes: [
+      {
+        path: '/',
+        name:'home',
+        component: Home
+      },
+      {
+            path: '/blog',
             name: 'blog',
             component: blog
         },
@@ -57,9 +62,9 @@ export default new Router({
             component: timeClick,
         },
         {
-            path: '/note',
-            name: 'note',
-            component: note
+            path: '/Comments',
+            name: 'comments',
+            component:Comments
         },
         {
             path: '/wrap',

@@ -10,12 +10,19 @@ const addArticle_vue_1 = require("../components/addArticle.vue");
 const message_vue_1 = require("../components/message.vue");
 const holiday_vue_1 = require("../components/holiday.vue");
 const timeClick_vue_1 = require("../components/timeClick.vue");
-const note_vue_1 = require("../components/note.vue");
 const wrap_vue_1 = require("../components/wrap.vue");
+const Comments_vue_1 = require("../components/Comments.vue");
+const Home_vue_1 = require("../components/Home.vue");
 vue_1.default.use(vue_router_1.default);
 exports.default = new vue_router_1.default({
-    routes: [{
+    routes: [
+        {
             path: '/',
+            name: 'home',
+            component: Home_vue_1.default
+        },
+        {
+            path: '/blog',
             name: 'blog',
             component: blog_vue_1.default
         },
@@ -55,9 +62,9 @@ exports.default = new vue_router_1.default({
             component: timeClick_vue_1.default,
         },
         {
-            path: '/note',
-            name: 'note',
-            component: note_vue_1.default
+            path: '/Comments',
+            name: 'comments',
+            component: Comments_vue_1.default
         },
         {
             path: '/wrap',

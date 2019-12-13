@@ -15,13 +15,21 @@ module.exports = {
                 pathRewrite: {
                     '^/api': '',
                 }
+            },
+            '/bing':{
+              target:'https://bing.biturl.top',
+              secure: false,
+              changeOrigin: true,
+              pathRewrite: {
+                '^/bing':''
+              }
             }
 
         },
 
         // Various Dev Server settings
         host: '127.0.0.1', // can be overwritten by process.env.HOST
-        port: 8000, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+        port: 8888, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
         autoOpenBrowser: false,
         errorOverlay: true,
         notifyOnErrors: true,

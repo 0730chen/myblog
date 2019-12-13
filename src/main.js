@@ -3,9 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const vue_1 = require("vue");
 const App_vue_1 = require("./App.vue");
 const router_1 = require("./router");
-const element = require("element-ui");
+const Element = require("element-ui");
 require("./style/index.scss");
-vue_1.default.use(element);
+require("element-ui/lib/theme-chalk/index.css");
+vue_1.default.use(Element);
 vue_1.default.config.productionTip = false;
 const app = new vue_1.default({
     el: '#app',
