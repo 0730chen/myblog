@@ -65,7 +65,7 @@ module.exports = {
         // Paths
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/', //去.后是开发环境，打包时需要加上.。主要是打包后的资源路径引用
+        assetsPublicPath: './', //去.后是开发环境，打包时需要加上.。主要是打包后的资源路径引用
 
         /**
          * Source Maps
