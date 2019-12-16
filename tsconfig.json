@@ -6,7 +6,10 @@
     "preserveConstEnums": true,
     "target": "es6",
     "lib": ["es2015","es2016","dom"],
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "src/*"

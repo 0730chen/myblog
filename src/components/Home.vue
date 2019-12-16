@@ -7,9 +7,9 @@
       <div class="Text">{{this.Text}}</div>
       <ul class="nav-list">
         <router-link to="/"><li>首页</li></router-link>
-        <router-link to="http://www.chentian.ltd/"><li>博客</li></router-link>
-        <router-link to="https://github.com/0730chen"><li>Github</li></router-link>
-        <router-link to=""><li>网站导航</li></router-link>
+        <a href="http://www.chentian.ltd/"><li>博客</li></a>
+        <a href="https://github.com/0730chen"><li>Github</li></a>
+        <a href="http://www.chentian.ltd/dist1/"><li>网站导航</li></a>
         <router-link to="/Comments"><li>留言板</li></router-link>
       </ul>
     </div>
