@@ -4,9 +4,8 @@ interface User {
   username:string|number
   password:any
 }
-
+//登陆注册的封装
 export function login(url: string,user:User){
-
   // @ts-ignore
   return Axios.post(url,user,
   ).then((res)=>{

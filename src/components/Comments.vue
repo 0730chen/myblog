@@ -8,24 +8,24 @@
           <div class="header">留言板</div>
           <div class="description">有什么话要对我说吗？这里是你畅所欲言的地方,友好的交流</div>
         </div>
-        <div class="Comment">
-          <ul class="Comment-container">
-            <li class="item" v-for="item in comment">
-              <div class="comment-author">
-                <div class="username">{{item.userName}}</div>
-              </div>
-              <div class="user-comment">{{item.Comments}}</div>
-              <div class="time">{{item.Data}}</div>
-            </li>
-          </ul>
-        </div>
         <div class="addComments">
           <div>添加新评论</div>
-          <input type="text" id="comment" placeholder="评论" @click="touch" v-model="Comments">
+          <textarea  type="text" id="comment" placeholder="评论" @click="touch" v-model="Comments"></textarea>
           <input type="text" id="username"placeholder="用户名" v-model="userName">
           <input type="text" id="mailaddress" placeholder="邮箱地址" v-model="mailaddress">
           <input type="text" id="url" placeholder="网站或者博客地址" v-model="url">
-          <input type='button' id="button" value="发表" @click="createComments">
+          <input type='button' id="button" value="添加" @click="PostComments">
+        </div>
+        <div class="Comment">
+          <ul class="Comment-container">
+            <li class="item" v-for="item in AllComments">
+              <div class="comment-author">
+                <div class="username">{{item.userName}}&nbsp;&nbsp;说:</div>
+              </div>
+              <div class="user-comment">{{item.Comments}}</div>
+              <div class="time">{{item.data}}</div>
+            </li>
+          </ul>
         </div>
 
       </div>
@@ -35,6 +35,7 @@
 <script lang="ts">
   import Vue from 'vue'
   import Component from "vue-class-component";
+  import axios from 'axios'
 
   console.log('留言板')
   @Component({})
@@ -45,6 +46,7 @@
     url: any
     createData: Date
     comment: any
+    AllComments:any
 
     private data() {
       return {
@@ -53,7 +55,8 @@
         mailaddress: '',
         url: '',
         createData: new Date(),
-        comment: []
+        comment: [],
+        AllComments:[]
       }
     }
 
@@ -83,29 +86,49 @@
     }
 
     created() {
-      let Comments = JSON.parse(localStorage.getItem('Comments'))
-      let data = this.TimeLoad(this.createData)
-      if (Comments === null) {
-        this.comment.push(
-          {
-            Comments: this.Comments,
-            userName: this.userName,
-            mailaddress: this.mailaddress,
-            url: this.url,
-            Data: data
-          }
-        )
-      } else {
-        console.log(Comments);
-        this.comment = Comments
+      // let Comments = JSON.parse(localStorage.getItem('Comments'))
+      // let data = this.TimeLoad(this.createData)
+      // if (Comments === null) {
+      //   this.comment.push(
+      //     {
+      //       Comments: this.Comments,
+      //       userName: this.userName,
+      //       mailaddress: this.mailaddress,
+      //       url: this.url,
+      //       Data: data
+      //     }
+      //   )
+      // } else {
+      //   console.log(Comments);
+      //   this.comment = Comments
+      // }
+      this.getComments()
+    }
+    getComments(){
+      axios.get('/api//AllComments').then(res=>{
+        this.AllComments = res.data
+      })
+    }
+    PostComments(){
+      let Data = {
+        Comments: this.Comments,
+        userName: this.userName,
+        mailaddress: this.mailaddress,
+        url: this.url,
       }
+      axios.post('/api/AddComments',Data).then(res=>{
+        alert(res.data)
+        this.getComments()
+      }).catch(error=>{
+        alert('添加失败')
+      })
     }
     img() {
-      console.log('图像')
+
     }
 
     touch() {
-      console.log('输入框')
+
     }
   }
 </script>
@@ -119,8 +142,8 @@
 
   .Comments {
     position: relative;
-    padding-top: 80px;
-    width: 60%;
+    padding-top: 300px;
+    width: 30%;
     margin: 0 auto;
     z-index: 100;
 
@@ -163,6 +186,18 @@
           height: 200px;
         }
 
+      }
+    }
+    .item{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100px;
+      .user-comment{
+        text-align: center;
+      }
+      .time{
+        text-align: end;
       }
     }
 
