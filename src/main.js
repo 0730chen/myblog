@@ -12,6 +12,6 @@ const app = new vue_1.default({
     el: '#app',
     router: router_1.default,
     components: { App: App_vue_1.default },
-    template: "<App/>"
+    render: h => h(App_vue_1.default),
 });
 exports.default = app;

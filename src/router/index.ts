@@ -11,6 +11,7 @@ import timeClick from '../components/timeClick.vue'
 import wrap from '../components/wrap.vue'
 import Comments from '../components/Comments.vue'
 import Home from '../components/Home.vue'
+import Navigation from '../components/Navigation.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -31,45 +32,19 @@ export default new Router({
             component: loging
         },
         {
-            path: '/manage',
-            name: 'management',
-            component: manage
-
-        },
-        {
             path: '/register',
             name: 'register',
             component: register
-        },
-        {
-            path: '/addArticle',
-            name: 'addArticle',
-            component: addArticle
-        },
-        {
-            path: '/Message',
-            name: 'Message',
-            component: message
-        },
-        {
-            path: '/holiday',
-            name: 'holiday',
-            component: holiday
-        },
-        {
-            path: '/timeClick',
-            name: 'timeClick',
-            component: timeClick,
         },
         {
             path: '/Comments',
             name: 'comments',
             component:Comments
         },
-        {
-            path: '/wrap',
-            name: 'wrap',
-            component: wrap
-        }
+      {
+        path: '/Nav',
+        name:'Navigation',
+        component: Navigation
+      }
     ]
 })

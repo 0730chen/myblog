@@ -37,7 +37,6 @@
   import Component from "vue-class-component";
   import axios from 'axios'
 
-  console.log('留言板')
   @Component({})
   export default class Comments extends Vue {
     Comments: any
