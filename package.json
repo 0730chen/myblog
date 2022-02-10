@@ -19,7 +19,7 @@
         "express": "^4.17.1",
         "express-session": "^1.16.2",
         "ionic-native": "https://github.com/ionic-team/ionic-native/tarball/v3.5.0",
-        "node-sass": "^4.13.0",
+        "node-sass": "^7.0.0",
         "sass-loader": "^7.3.1",
         "vue": "^2.5.2",
         "vue-class-component": "^7.1.0",
